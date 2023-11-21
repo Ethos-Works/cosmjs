@@ -24,6 +24,11 @@ RUN (cd packages/faucet && SKIP_BUILD=1 yarn pack-node)
 FROM alpine:3.15
 # Installs Node.js 16 (https://pkgs.alpinelinux.org/packages?name=nodejs&branch=v3.15)
 RUN apk add --update nodejs
+# TODO my additions
+RUN apk add --no-cache bash
+RUN apk add --no-cache jq
+# ENV FAUCET_CONCURRENCY=3
+# ENV FAUCET_MNEMONIC="economy stock theory fatal elder harbor betray wasp final emotion task crumble siren bottom lizard educate guess current outdoor pair theory focus wife stone"
 
 COPY --from=build-env /app/packages/faucet /app/packages/faucet
 WORKDIR /app
